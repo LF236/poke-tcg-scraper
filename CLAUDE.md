@@ -57,27 +57,36 @@ docker compose up -d              # full stack
 
 ## Architecture
 
+Clean Architecture / SOLID. Each module follows the same layout:
+
+```
+<module>/
+├── application/
+│   ├── dtos/
+│   └── use-cases/
+├── domain/
+│   ├── entities/
+│   └── ports/            # interfaces (abstract classes)
+├── infrastructure/
+│   └── orm/typeorm/      # entity + repository impl
+├── interface/            # controllers / REST types
+└── <module>.module.ts
+```
+
+### Modules
+
 ```
 src/
-├── marketplace/          # Marketplace adapters
-│   ├── adapters/
-│   │   ├── mercadolibre.adapter.ts
-│   │   ├── ebay.adapter.ts
-│   │   └── amazon.adapter.ts
-│   └── marketplace.interface.ts  # MarketplaceAdapter interface
-├── catalog/              # Products & expansions management
-│   ├── entities/
-│   │   ├── expansion.entity.ts
-│   └── └── product.entity.ts
+├── catalog/              # Expansions & sealed products catalog
+├── marketplace/          # Adapters: MercadoLibre, eBay, Amazon
+│   └── infrastructure/
+│       └── adapters/
+│           ├── mercadolibre/
+│           └── ebay/
 ├── listing/              # Marketplace listings & price history
-│   ├── entities/
-│   │   ├── listing.entity.ts
-│   └── └── price-observation.entity.ts
 ├── deal/                 # Deal detection engine
-│   ├── deal.service.ts   # Reference price calc & discount detection
-│   └── deal.entity.ts
-├── notification/         # Telegram integration
-├── scheduler/            # Cron jobs (search orchestration)
+├── notification/         # Telegram alerts
+├── scheduler/            # Cron orchestration
 └── database/
     └── migrations/
 ```
@@ -94,14 +103,13 @@ Scheduler → SearchOrchestrator → MarketplaceAdapters
                               DealDetector → TelegramNotification
 ```
 
-### MarketplaceAdapter interface
-
-Every marketplace adapter implements:
+### Marketplace port
 
 ```typescript
-interface MarketplaceAdapter {
-  search(query: string): Promise<MarketplaceProduct[]>;
-  getProduct(externalId: string): Promise<MarketplaceProduct | null>;
+// marketplace/domain/ports/marketplace-adapter.port.ts
+abstract class MarketplaceAdapterPort {
+  abstract search(query: string): Promise<MarketplaceProduct[]>;
+  abstract getProduct(externalId: string): Promise<MarketplaceProduct | null>;
 }
 ```
 
