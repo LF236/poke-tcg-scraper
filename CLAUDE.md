@@ -134,6 +134,23 @@ abstract class MarketplaceAdapterPort {
 
 Total cost = price + shipping + taxes + applicable fees. International purchases also factor in currency conversion and import costs.
 
+## Naming conventions
+
+Filename suffix dicta el nombre de la clase exportada:
+
+| Archivo termina en | Clase exportada termina en |
+|---|---|
+| `.entity.ts` | `Entity` |
+| `.port.ts` | `Port` |
+| `.use-case.ts` | `UseCase` |
+| `.dto.ts` | `Dto` |
+| `.module.ts` | `Module` |
+| `.service.ts` | `Service` |
+| `.adapter.ts` | `Adapter` |
+| `.repository.ts` | `Repository` |
+
+Ejemplo: `expansion.entity.ts` → clase `ExpansionEntity`.
+
 ## Development phases
 
 - **Phase 1 (MVP):** PostgreSQL setup, product/expansion catalog, Mercado Libre + eBay adapters, price history, Telegram alerts, basic deal detector.
