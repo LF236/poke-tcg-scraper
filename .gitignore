@@ -1,0 +1,22 @@
+# Editor
+.vscode
+.idea
+
+# Dependencies
+node_modules
+
+# Build
+dist
+tsconfig.build.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs
+
+# OS
+.DS_Store
