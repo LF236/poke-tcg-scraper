@@ -1,13 +1,14 @@
-export type ProductType =
-  | 'booster-pack'
-  | 'booster-bundle'
-  | 'booster-box'
-  | 'elite-trainer-box'
-  | 'collection-box'
-  | 'premium-collection'
-  | 'ultra-premium-collection'
-  | 'tin'
-  | 'mini-tin'
-  | 'blister'
-  | 'build-and-battle'
-  | 'special-collection';
+export enum ProductType {
+  BoosterPack = 'booster-pack',
+  BoosterBundle = 'booster-bundle',
+  BoosterBox = 'booster-box',
+  EliteTrainerBox = 'elite-trainer-box',
+  CollectionBox = 'collection-box',
+  PremiumCollection = 'premium-collection',
+  UltraPremiumCollection = 'ultra-premium-collection',
+  Tin = 'tin',
+  MiniTin = 'mini-tin',
+  Blister = 'blister',
+  BuildAndBattle = 'build-and-battle',
+  SpecialCollection = 'special-collection',
+}
