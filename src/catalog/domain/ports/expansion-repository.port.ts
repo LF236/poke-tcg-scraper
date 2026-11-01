@@ -1,4 +1,4 @@
-import { ExpansionEntity } from '../entities/expansion.entity.js';
+import { ExpansionEntity } from '../entities/expansion.entity';
 
 export abstract class ExpansionRepositoryPort {
   abstract findAll(): Promise<ExpansionEntity[]>;

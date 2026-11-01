@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { ExpansionOrmEntity } from './expansion-orm.entity.js';
+import { ExpansionOrmEntity } from './expansion-orm.entity';
 
 @Entity('products')
 export class ProductOrmEntity {

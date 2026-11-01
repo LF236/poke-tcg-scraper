@@ -1,4 +1,4 @@
-import { ProductEntity } from '../entities/product.entity.js';
+import { ProductEntity } from '../entities/product.entity';
 
 export abstract class ProductRepositoryPort {
   abstract findAll(): Promise<ProductEntity[]>;
