@@ -4,6 +4,8 @@ import { createObserveModule } from '@nestjs/observe';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CatalogModule } from './catalog/catalog.module';
+import { ExpansionOrmEntity } from './catalog/infrastructure/orm/typeorm/expansion-orm.entity';
+import { ProductOrmEntity } from './catalog/infrastructure/orm/typeorm/product.orm-entity';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -22,6 +24,10 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         password: config.get('DB_PASSWORD'),
         autoLoadEntities: true,
         synchronize: false,
+        entities: [
+          ExpansionOrmEntity,
+          ProductOrmEntity
+        ]
       }),
     }),
     CatalogModule
