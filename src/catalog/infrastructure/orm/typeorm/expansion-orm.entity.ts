@@ -11,7 +11,7 @@ export class ExpansionOrmEntity {
   @Column({ name: 'english_name' })
   englishName: string;
 
-  @Column({ name: 'spanish_name', nullable: true })
+  @Column({ name: 'spanish_name', type: 'text', nullable: true })
   spanishName: string | null;
 
   @Column({ name: 'release_date', type: 'date', nullable: true })

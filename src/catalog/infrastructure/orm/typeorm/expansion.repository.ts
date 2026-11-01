@@ -16,8 +16,25 @@ export class ExpansionRepository implements ExpansionRepositoryPort {
     const rows = await this.repo
       .createQueryBuilder('expansion')
       .getMany();
+    return rows.map((row) => this.toDomain(row));
+  }
 
+  async findById(id: string): Promise<ExpansionEntity | null> {
+    const row = await this.repo
+      .createQueryBuilder('expansion')
+      .where('expansion.id = :id', { id })
+      .getOne();
 
+    return row ? this.toDomain(row) : null;
+  }
+
+  async save(expansion: ExpansionEntity) : Promise<ExpansionEntity> {
+    const saved = await this.repo.save(this.toOrm(expansion));
+    return this.toDomain(saved);
+  }
+
+  async delete(id: string) : Promise<void> {
+    await this.repo.delete(id);
   }
 
   private toDomain(row: ExpansionOrmEntity) : ExpansionEntity {
@@ -33,5 +50,12 @@ export class ExpansionRepository implements ExpansionRepositoryPort {
 
   private toOrm(entity: ExpansionEntity) : ExpansionOrmEntity {
     const orm = new ExpansionOrmEntity();
+    orm.id = entity.id;
+    orm.name = entity.name;
+    orm.englishName = entity.englishName;
+    orm.spanishName = entity.spanishName;
+    orm.releaseDate = entity.releaseDate;
+    orm.createdAt = entity.createdAt;
+    return orm;
   }
 }

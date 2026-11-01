@@ -15,19 +15,19 @@ export class ProductOrmEntity {
   @ManyToOne(() => ExpansionOrmEntity, { nullable: true, onDelete: 'SET NULL' })
   expansion: ExpansionOrmEntity | null;
 
-  @Column({ name: 'expansion_id', nullable: true })
+  @Column({ name: 'expansion_id', nullable: true, type: 'uuid' })
   expansionId: string | null;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'varchar' })
   language: string | null;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'int' })
   units: number | null;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'text' })
   description: string | null;
 
-  @Column({ name: 'image_url', nullable: true })
+  @Column({ name: 'image_url', nullable: true, type: 'varchar' })
   imageUrl: string | null;
 
   @CreateDateColumn({ name: 'created_at' })
