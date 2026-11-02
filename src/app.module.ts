@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CatalogModule } from './catalog/catalog.module';
 import { ExpansionOrmEntity } from './catalog/infrastructure/orm/typeorm/expansion-orm.entity';
 import { ProductOrmEntity } from './catalog/infrastructure/orm/typeorm/product.orm-entity';
+import { MarketPlaceModule } from './marketplace/marketplace.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -30,7 +31,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         ]
       }),
     }),
-    CatalogModule
+    CatalogModule,
+    MarketPlaceModule
   ],
 
 })
