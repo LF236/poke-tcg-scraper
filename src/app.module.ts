@@ -7,6 +7,9 @@ import { CatalogModule } from './catalog/catalog.module';
 import { ExpansionOrmEntity } from './catalog/infrastructure/orm/typeorm/expansion-orm.entity';
 import { ProductOrmEntity } from './catalog/infrastructure/orm/typeorm/product.orm-entity';
 import { MarketPlaceModule } from './marketplace/marketplace.module';
+import { ListingOrmEntity } from './listing/infrastructure/orm/typeorm/listing.orm-entity';
+import { PriceObservationEntity } from './listing/domain/entities/price-observation.entity';
+import { ListingModule } from './listing/listing.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -27,12 +30,15 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         synchronize: false,
         entities: [
           ExpansionOrmEntity,
-          ProductOrmEntity
+          ProductOrmEntity,
+          ListingOrmEntity,
+          PriceObservationEntity
         ]
       }),
     }),
     CatalogModule,
-    MarketPlaceModule
+    MarketPlaceModule,
+    ListingModule
   ],
 
 })
